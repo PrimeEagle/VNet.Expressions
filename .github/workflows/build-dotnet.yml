@@ -11,6 +11,9 @@ jobs:
 
     steps:
     - uses: actions/checkout@v3
+      with:
+          submodules: 'recursive'
+          token: ${{ secrets.BUILD_TOKEN }}
 
     - name: Install .NET 8.0 SDK
       run: |
@@ -28,15 +31,18 @@ jobs:
 
     - name: Add GitHub Packages source
       run: |
-        nuget sources Add -Name "GitHub" -Source "https://nuget.pkg.github.com/PrimeEagle/index.json" -Username PrimeEagle -Password ${{ secrets.NUGET_TOKEN }}
+        nuget sources Add -Name "GitHub" -Source "https://nuget.pkg.github.com/PrimeEagle/index.json" -Username PrimeEagle -Password ${{ secrets.BUILD_TOKEN }}
       
     - name: Restore NuGet packages
       run: dotnet restore ${{ secrets.DOTNET_SOLUTION }}
       env:
-            NUGET_AUTH_TOKEN: ${{ secrets.NUGET_TOKEN }}
+            NUGET_AUTH_TOKEN: ${{ secrets.BUILD_TOKEN }}
+            UsePackageReferences: true
               
     - name: Build with version
       run: dotnet build ${{ secrets.DOTNET_SOLUTION }} /p:BuildNumber=${{ github.run_number }}
+      env:
+            UsePackageReferences: true
       
     - name: Print Run Number
       run: echo "Run number $env:GITHUB_RUN_NUMBER"
