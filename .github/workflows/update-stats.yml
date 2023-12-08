@@ -63,6 +63,8 @@ jobs:
           $NewNugetVersion = $nugetErrorMsg
         }
         echo "NuGet version = $NewNugetVersion"
+        echo "latestBuildError = $latestBuildError"
+        echo "nugetError = $nugetError"
         
         # Patterns to identify the badge lines
         $BuildPattern = "!\[Static Badge\]\(https://img\.shields\.io/badge/Latest_Build-v[0-9]+(\.[0-9]+){0,3}-lightblue\)"
