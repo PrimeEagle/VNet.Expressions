@@ -104,6 +104,6 @@ jobs:
           $VersionData | ConvertTo-Json | Set-Content -Path $nugetVersionFile
           git config --global user.email "${{ secrets.USER_EMAIL }}"
           git config --global user.name "${{ github.repository_owner }}"
-          git add version-nuget.json
+          git add $nugetVersionFile
           git commit -m "Update NuGet package version to $NugetVersion"
           git push
