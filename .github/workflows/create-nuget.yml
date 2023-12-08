@@ -96,12 +96,10 @@ jobs:
 
       - name: Update version-nuget.json
         run: |
-          $NugetVersion = ${{ env.VERSION_NUMBER }}
+          $NugetVersion = "${{ env.VERSION_NUMBER }}"
           $VersionData = @{
             version = $NugetVersion
           }
-          
-          echo "VersionData = $VersionData"
           
           $nugetVersionFile = ".version/version-nuget.json"
           $VersionData | ConvertTo-Json | Set-Content -Path $nugetVersionFile
