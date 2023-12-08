@@ -55,7 +55,7 @@ jobs:
       id: latest_release
       uses: octokit/request-action@v2.x
       with:
-        route: GET /repos/${{ github.repository_owner }}/${{ secrets.DOTNET_SOLUTION }}/releases/latest
+        route: GET /repos/${{ github.repository }}/releases/latest
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       continue-on-error: true
