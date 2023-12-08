@@ -1,7 +1,6 @@
-<Project Sdk="Microsoft.NET.Sdk">
-
+﻿<Project Sdk="Microsoft.NET.Sdk">
 	<PropertyGroup>
-		<TargetFramework>net7.0</TargetFramework>
+		<TargetFramework>net8.0</TargetFramework>
 		<ImplicitUsings>enable</ImplicitUsings>
 		<Nullable>enable</Nullable>
 
@@ -36,7 +35,12 @@
 	<ItemGroup Condition="'$(UsePackageReferences)' == 'true'">
 
 	</ItemGroup>
-	
-	<Import Project="..\VNet.Expressions\VNet.Expressions.projitems" Label="Shared" />
 
+	<ItemGroup Label="Imports">
+		<Compile Include="..\VNet.Expressions\**\*.cs"></Compile>
+		<Compile Remove="..\VNet.Expressions\obj\Debug\**" />
+		<Compile Remove="obj\**" />
+		<EmbeddedResource Remove="obj\**" />
+		<None Remove="obj\**" />
+	</ItemGroup>
 </Project>
