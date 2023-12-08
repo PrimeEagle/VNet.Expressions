@@ -68,13 +68,13 @@ jobs:
         run: dotnet pack ${{ secrets.DOTNET_SOLUTION }} --configuration Release -o nupkgs /p:Version=${{ env.VERSION_NUMBER }}
   
       - name: Upload Artifacts
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v3
         with:
           name: nuget-packages
           path: nupkgs/*.nupkg
   
       - name: Download Artifacts
-        uses: actions/download-artifact@v2
+        uses: actions/download-artifact@v3
         with:
           name: nuget-packages
           path: nupkgs
