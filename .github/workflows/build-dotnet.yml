@@ -18,7 +18,7 @@ jobs:
           submodules: 'recursive'
           token: ${{ secrets.BUILD_TOKEN }}
 
-    - name: Install .NET 8.0 SDK
+    - name: Install .NET ${{ secrets.DOTNET_VERSION }} SDK
       run: |
         $url = "https://download.visualstudio.microsoft.com/download/pr/2b2d6133-c4f9-46dd-9ab6-86443a7f5783/340054e2ac7de2bff9eea73ec9d4995a/dotnet-sdk-${{ secrets.DOTNET_VERSION }}-win-x64.zip"
         $output = "dotnet-sdk-${{ secrets.DOTNET_VERSION }}-win-x64.zip"
