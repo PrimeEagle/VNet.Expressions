@@ -59,6 +59,7 @@ jobs:
           $NewNugetVersion ="$($versionJson.version)"
         }
         catch {
+          $nugetError = $true
           $NewNugetVersion = $nugetErrorMsg
         }
         echo "NuGet version = $NewNugetVersion"
