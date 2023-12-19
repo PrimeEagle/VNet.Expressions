@@ -1,5 +1,7 @@
 ﻿using Microsoft.CSharp;
 using System.CodeDom.Compiler;
+using System.Collections.Generic;
+using System.Linq;
 using System.Reflection;
 
 namespace VNet.Expressions
@@ -18,7 +20,7 @@ namespace VNet.Expressions
                 GenerateExecutable = false
             };
 
-            var parameterAssignments = string.Join(Environment.NewLine, parameters.Select(p => $"var {p.Key} = ({p.Value.GetType().FullName})parameters[\"{p.Key}\"];"));
+            var parameterAssignments = string.Join(global::System.Environment.NewLine, parameters.Select(p => $"var {p.Key} = ({p.Value.GetType().FullName})parameters[\"{p.Key}\"];"));
 
             var code = $@"
             using System;
@@ -37,8 +39,8 @@ namespace VNet.Expressions
 
             if (compileResult.Errors.HasErrors)
             {
-                var errorMessage = string.Join(Environment.NewLine, compileResult.Errors);
-                throw new InvalidOperationException($"Error compiling inline function: {errorMessage}");
+                var errorMessage = string.Join(global::System.Environment.NewLine, compileResult.Errors);
+                throw new global::System.InvalidOperationException($"Error compiling inline function: {errorMessage}");
             }
 
             var assembly = compileResult.CompiledAssembly;
@@ -51,9 +53,9 @@ namespace VNet.Expressions
 
                 return result;
             }
-            catch (Exception ex)
+            catch (global::System.Exception ex)
             {
-                throw new InvalidOperationException("Error evaluating inline function", ex);
+                throw new global::System.InvalidOperationException("Error evaluating inline function", ex);
             }
         }
     }
