@@ -1,46 +1,39 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
-	<PropertyGroup>
-		<TargetFramework>net8.0</TargetFramework>
-		<ImplicitUsings>enable</ImplicitUsings>
-		<Nullable>enable</Nullable>
-
-		<IsPackable>false</IsPackable>
-		<IsTestProject>true</IsTestProject>
-	</PropertyGroup>
-
-	<ItemGroup>
-		<PackageReference Include="Microsoft.CodeAnalysis.Common" Version="4.8.0" />
-		<PackageReference Include="Microsoft.CodeAnalysis.CSharp" Version="4.8.0" />
-		<PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.9.0-preview-23531-01" />
-		<PackageReference Include="MSTest.TestAdapter" Version="3.1.1" />
-		<PackageReference Include="MSTest.TestFramework" Version="3.1.1" />
-		<PackageReference Include="coverlet.collector" Version="6.0.0">
-			<PrivateAssets>all</PrivateAssets>
-			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-		</PackageReference>
-		<PackageReference Include="System.CodeDom" Version="8.0.0" />
-	</ItemGroup>
-
-	<PropertyGroup>
-		<!-- Check for the UsePackageReferences environment variable -->
-		<UsePackageReferences Condition="'$(UsePackageReferences)' == ''">false</UsePackageReferences>
-	</PropertyGroup>
-
-	<!-- Include project references by default -->
-	<ItemGroup Condition="'$(UsePackageReferences)' != 'true'">
-
-	</ItemGroup>
-
-	<!-- Include NuGet package references when UsePackageReferences is true -->
-	<ItemGroup Condition="'$(UsePackageReferences)' == 'true'">
-
-	</ItemGroup>
-
-	<ItemGroup Label="Imports">
-		<Compile Include="..\VNet.Expressions\**\*.cs"></Compile>
-		<Compile Remove="..\VNet.Expressions\obj\Debug\**" />
-		<Compile Remove="obj\**" />
-		<EmbeddedResource Remove="obj\**" />
-		<None Remove="obj\**" />
-	</ItemGroup>
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <IsPackable>false</IsPackable>
+    <IsTestProject>true</IsTestProject>
+  </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="Microsoft.CodeAnalysis.Common" Version="4.8.0" />
+    <PackageReference Include="Microsoft.CodeAnalysis.CSharp" Version="4.8.0" />
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.9.0-preview-23531-01" />
+    <PackageReference Include="MSTest.TestAdapter" Version="3.1.1" />
+    <PackageReference Include="MSTest.TestFramework" Version="3.1.1" />
+    <PackageReference Include="coverlet.collector" Version="6.0.0">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="System.CodeDom" Version="8.0.0" />
+  </ItemGroup>
+  <PropertyGroup>
+    <!-- Check for the UsePackageReferences environment variable -->
+    <UsePackageReferences Condition="'$(UsePackageReferences)' == ''">false</UsePackageReferences>
+  </PropertyGroup>
+  <!-- Include project references by default -->
+  <ItemGroup Condition="'$(UsePackageReferences)' != 'true'">
+  </ItemGroup>
+  <!-- Include NuGet package references when UsePackageReferences is true -->
+  <ItemGroup Condition="'$(UsePackageReferences)' == 'true'">
+  </ItemGroup>
+  <ItemGroup Label="Imports">
+    <Compile Include="..\VNet.Expressions\**\*.cs">
+    </Compile>
+    <Compile Remove="..\VNet.Expressions\obj\Debug\**" />
+    <Compile Remove="obj\**" />
+    <EmbeddedResource Remove="obj\**" />
+    <None Remove="obj\**" />
+  </ItemGroup>
 </Project>
